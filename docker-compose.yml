@@ -29,23 +29,6 @@ services:
     volumes:
       - slave_data:/var/lib/mysql
 
-  app:
-    build: .
-    container_name: nest-app
-    environment:
-      DB_PORT: 3306
-      DB_USER: user
-      DB_NAME: aula-db
-      DB_PASSWORD: password
-      DB_HOST_SLAVE: db-gerenciado-slave
-      DB_HOST_MASTER: db-gerenciado-master
-    depends_on:
-      - db-gerenciado-master
-      - db-gerenciado-slave
-    ports:
-      - "3000:3000"
-    command: npm run start:dev
-
 volumes:
   master_data:
   slave_data:

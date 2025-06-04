@@ -1,17 +1,22 @@
+import { config } from 'dotenv';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/entities/product.entity';
 
+config();
 const configService = new ConfigService();
 
 @Module({
   providers: [],
   controllers: [],
   imports: [
+    ProductsModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      synchronize: false,
-      entities: [],
+      synchronize: true,
+      entities: [Product],
       replication: {
         master: {
           host: configService.get('DB_HOST_MASTER'), // Escrita
