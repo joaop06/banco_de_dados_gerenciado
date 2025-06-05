@@ -6,15 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "nest start",
-    "build": "nest build",
-    "start:dev": "nest start --watch",
-    ".": "########################################### Windows Commands ###########################################",
-    "logs.win": "docker-compose logs app",
-    "start.win": "docker-compose up --build -d",
-    "..": "########################################### Linux Commands ###########################################",
-    "logs.lin": "docker compose logs app",
-    "start.lin": "docker compose up --build -d"
+    "start": "nest start --watch",
+    "down": "docker compose -f ./docker-compose.yml down",
+    "up": "docker-compose -f ./docker-compose.yml up --build -d"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -22,7 +16,10 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/schedule": "^6.0.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@types/dotenv": "^6.1.1",
+    "dotenv": "^16.5.0",
     "mysql2": "^3.14.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",

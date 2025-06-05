@@ -8,7 +8,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3377:3306"
+      - "3306:3306"
     command: --server-id=1 --log-bin=mysql-bin --binlog-do-db=aula-db
     volumes:
       - master_data:/var/lib/mysql
@@ -22,29 +22,12 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3388:3306"
+      - "3307:3306"
     command: --server-id=2 --relay-log=relay-bin --log-bin=mysql-bin --binlog-do-db=aula-db
     depends_on:
       - db-gerenciado-master
     volumes:
       - slave_data:/var/lib/mysql
-
-  app:
-    build: .
-    container_name: nest-app
-    environment:
-      DB_PORT: 3306
-      DB_USER: user
-      DB_NAME: aula-db
-      DB_PASSWORD: password
-      DB_HOST_SLAVE: db-gerenciado-slave
-      DB_HOST_MASTER: db-gerenciado-master
-    depends_on:
-      - db-gerenciado-master
-      - db-gerenciado-slave
-    ports:
-      - "3000:3000"
-    command: npm run start:dev
 
 volumes:
   master_data:
