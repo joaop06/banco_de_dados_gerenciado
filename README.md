@@ -39,7 +39,7 @@ mysql -u root -p      # senha: root
 # Configurando conexão da réplica
 STOP SLAVE;
 CHANGE MASTER TO
-  MASTER_HOST='db-master',
+  MASTER_HOST='db-gerenciado-master',
   MASTER_USER='replica',
   MASTER_PASSWORD='replica_pass',
   MASTER_LOG_FILE='mysql-bin.000003', -- use o valor de File
